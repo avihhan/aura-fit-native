@@ -46,6 +46,17 @@ Add any extra web origins to the server’s **`CORS_ORIGINS`** (comma-separated)
 - **Android:** Cleartext HTTP is enabled via `expo-build-properties` (`usesCleartextTraffic`) so `http://` dev URLs work. Prefer **HTTPS** for store releases.
 - **iOS:** `NSAllowsLocalNetworking` is set in [app.config.ts](app.config.ts) to help local/LAN dev. Production should use HTTPS for `EXPO_PUBLIC_WEB_APP_URL`.
 
+## Production builds (EAS)
+
+See **[docs/EAS_BUILD_AND_SUBMIT.md](docs/EAS_BUILD_AND_SUBMIT.md)** for `eas login`, `eas init`, setting **`EXPO_PUBLIC_WEB_APP_URL`** on EAS (not only local `.env`), `eas build`, and `eas submit` to Play / App Store.
+
+Quick commands after setup:
+
+```bash
+npm run eas:build:android
+npm run eas:submit:android
+```
+
 ## Related repos
 
 - [aura-fit](../aura-fit) — Flask API, Vite mobile web, admin portal
