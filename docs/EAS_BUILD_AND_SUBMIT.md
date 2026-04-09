@@ -8,17 +8,40 @@ Use this flow so **`EXPO_PUBLIC_WEB_APP_URL`** is set on EAS servers at bundle t
 2. **Android:** Google Play Console app (paid developer account).
 3. **iOS:** Apple Developer Program membership; Mac optional if you use only EAS cloud builds for iOS.
 
-## One-time: link the project to EAS
+## One-time: link this repo to an EAS project
 
-From the `aura-fit-native` directory:
+GitHub integration on expo.dev does **not** automatically set **`extra.eas.projectId`** on your computer. You must link the same **Project ID** locally once.
+
+### You already created the project on expo.dev (your case)
+
+1. Open [expo.dev](https://expo.dev) → select **aura-fit-native** (or your project name).
+2. Go to **Project settings** (or **General**) and copy **Project ID** (a UUID like `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`).
+
+From the `aura-fit-native` folder, with the same Expo account you used on the website:
 
 ```bash
-npm install
+npx eas login
+npx eas init --id YOUR_PROJECT_ID_HERE --force
+```
+
+`--force` applies the link without the “create a new project?” prompt. This writes **`extra.eas.projectId`** into `app.config.ts` (or merges it).
+
+Then run:
+
+```bash
+npm run eas:build:android
+```
+
+### New project (no dashboard project yet)
+
+```bash
 npx eas login
 npx eas init
 ```
 
-`eas init` creates/links the project on Expo and writes **`extra.eas.projectId`** into your app config (accept the prompt to update `app.config.ts`).
+Accept creating/linking when prompted; that also sets **`extra.eas.projectId`**.
+
+### After linking
 
 Set a stable **Android application ID** and **iOS bundle identifier** before your first store build (in `app.config.ts` under `android.package` and `ios.bundleIdentifier`). Changing them later requires a new listing or careful migration.
 
