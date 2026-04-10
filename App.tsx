@@ -9,8 +9,9 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import { WebView } from 'react-native-webview';
 
-const WEB_APP_URL =
-  process.env.EXPO_PUBLIC_WEB_APP_URL ?? 'http://localhost:3001';
+const WEB_APP_URL = (
+  process.env.EXPO_PUBLIC_WEB_APP_URL ?? 'http://localhost:3001'
+).trim();
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -47,6 +48,10 @@ export default function App() {
             key={reloadKey}
             source={{ uri: WEB_APP_URL }}
             style={styles.webview}
+            javaScriptEnabled
+            domStorageEnabled
+            mixedContentMode="compatibility"
+            allowsInlineMediaPlayback
             onLoadStart={() => {
               setLoading(true);
               setError(null);

@@ -13,13 +13,15 @@ const config: ExpoConfig = {
   orientation: 'portrait',
   icon: './assets/icon.png',
   userInterfaceStyle: 'light',
-  newArchEnabled: true,
+  // WebView + Expo Go is more stable with the old architecture on many devices.
+  newArchEnabled: false,
   splash: {
     image: './assets/splash-icon.png',
     resizeMode: 'contain',
     backgroundColor: '#ffffff',
   },
   ios: {
+    bundleIdentifier: 'com.avihhan.aurafitnative',
     supportsTablet: true,
     infoPlist: {
       NSAppTransportSecurity: {
@@ -28,6 +30,7 @@ const config: ExpoConfig = {
     },
   },
   android: {
+    package: 'com.avihhan.aurafitnative',
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
       backgroundColor: '#ffffff',
