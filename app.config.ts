@@ -8,7 +8,8 @@ import type { ExpoConfig } from 'expo/config';
  */
 const config: ExpoConfig = {
   name: 'aura-fit-native',
-  slug: 'aura-fit-native',
+  // Must match the slug of the Expo project linked by extra.eas.projectId (see expo.fyi/eas-project-id).
+  slug: 'aura-fit',
   version: '1.0.0',
   orientation: 'portrait',
   icon: './assets/icon.png',
